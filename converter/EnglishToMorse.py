@@ -1,5 +1,13 @@
-class EnglishToMoarse:
-    def encrypt(message):
+from data import SymbolsData
+
+
+class EnglishToMorse:
+
+    def __init__(self):
+        self.symbolData = SymbolsData.Mapping()
+
+    def getEnglishToMorse(self, message):
+        MORSE_CODE_DICT = self.symbolData
         cipher = ''
         for letter in message:
             if letter != ' ':
