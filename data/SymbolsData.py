@@ -1,7 +1,7 @@
 class Mapping:
     def __init__(self):
         self._MORSE_CODE_DICT = None
-        self.InitializeDictionary()
+        self.InitializeDictionary(self)
 
     @property
     def getCodes(self):
