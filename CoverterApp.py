@@ -24,8 +24,8 @@ class ConverterApp:
     def addingInputFile(self, selection):
         inputFileValue = ''
         try:
-            # inputFile = input('Enter File Name For Input\n')
-            with open('Codes.txt', 'r') as inputFile:
+            inputFile = input('Enter File Name For Input\n')
+            with open(inputFile, 'r') as inputFile:
                 inputFileValue = inputFile.read()
 
             result = self.handlingSelection(selection, inputFileValue)
@@ -57,8 +57,8 @@ class ConverterApp:
 
     def writeToOutputFile(self, result):
         try:
-            # outputFile = input('Enter File Name For Ouput\n')
-            with open('Output.txt', 'w') as outputFile:
+            outputFile = input('Enter File Name For Ouput\n')
+            with open(outputFile, 'w') as outputFile:
                 outputFile.write(result)
         except IOError:
             pass
