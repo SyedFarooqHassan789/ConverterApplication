@@ -5,7 +5,7 @@ class MorseConverter:
 
     def __init__(self):
         self.symbolData = SymbolsData.Mapping()
-        self._morseCode = ""
+        self._morseCode = ''
 
     # getter method
     @property
@@ -46,11 +46,16 @@ class MorseConverter:
 
                     # adding space to separate words
                     word += ' '
-                else:
+                elif singleCharacter is not '/':
 
                     # accessing the keys using their values (reverse of encryption)
-                    word += list(morseCodeDict.keys())[list(morseCodeDict
-                                                            .values()).index(singleCharacter)]
+                    if singleCharacter in morseCodeDict.values():
+                        word += list(morseCodeDict.keys())[list(morseCodeDict
+                                                                .values()).index(singleCharacter)]
+                    else:
+                        word = 'NotValid'
                     singleCharacter = ''
-
+                else:
+                    singleCharacter = ''
+                    word += ' '
         return word

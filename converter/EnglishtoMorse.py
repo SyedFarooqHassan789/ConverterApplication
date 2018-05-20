@@ -25,6 +25,6 @@ class EnglishConverter:
             if letter != ' ':
                 morseCode += morseCodeDict[letter] + ' '
             else:
-                morseCode += ' '
+                morseCode += '/ '
 
         return morseCode
