@@ -1,11 +1,13 @@
 from data import SymbolsData
 
 
-class MorseConverter:
+class Converter:
 
     def __init__(self):
         self.symbolData = SymbolsData.Mapping()
         self._morseCode = ''
+        self.Word_Value = 1
+        self.Character_Value = 2
 
     # getter method
     @property
@@ -39,10 +41,10 @@ class MorseConverter:
             # in case of space
             else:
                 # if countSpaces = 1 that indicates a new character
-                countSpaces += 1
+                countSpaces += self.Word_Value
 
                 # if countSpaces = 2 that indicates a new word
-                if countSpaces == 2:
+                if countSpaces == self.Character_Value:
 
                     # adding space to separate words
                     word += ' '

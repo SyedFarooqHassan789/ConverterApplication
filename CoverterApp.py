@@ -5,11 +5,12 @@ import re
 
 class ConverterApp:
     def __init__(self):
-        self.getEnglishToMorse = EnglishtoMorse.EnglishConverter()
-        self.getMorseToEnglish = MorseToEnglish.MorseConverter()
-        self.MORSE_TO_ENGLISH = 1
-        self.ENGLISH_TO_MORSE = 2
+        self.EnglishToMorseConverter = EnglishtoMorse.Converter()
+        self.MorseToEnglishConverter = MorseToEnglish.Converter()
+        self.MORSE_TO_ENGLISH = 1  # define constants
+        self.ENGLISH_TO_MORSE = 2  # define constants
 
+    # main of program
     def main(self):
         while True:
             try:
@@ -21,6 +22,7 @@ class ConverterApp:
                 break
         self.addingInputFile(selection)
 
+    # function taking input file as input
     def addingInputFile(self, selection):
         inputFileValue = ''
         try:
@@ -32,42 +34,47 @@ class ConverterApp:
             if result is not 0:
                 self.writeToOutputFile(result)
         except FileNotFoundError:
+            print("Input File Not Found")
             pass
         except IOError:
             pass
 
+    # when user click on 1 or 2 for selection
     def handlingSelection(self, selection, inputValue):
         isValid = self.validation(selection, inputValue)
 
         if selection is self.MORSE_TO_ENGLISH and isValid:
-            self.getMorseToEnglish.morseValue = inputValue
-            result = self.getMorseToEnglish.getMorseToEnglish()
+            self.MorseToEnglishConverter.morseValue = inputValue
+            result = self.MorseToEnglishConverter.getMorseToEnglish()
             if result is 'NotValid':
                 print('File contain inappropiate characters')
                 return 0
 
         elif selection is self.ENGLISH_TO_MORSE and isValid:
-            self.getEnglishToMorse.englishWord = inputValue.upper()
-            result = self.getEnglishToMorse.getEnglishToMorse()
+            self.EnglishToMorseConverter.englishWord = inputValue.upper()
+            result = self.EnglishToMorseConverter.getEnglishToMorse()
 
         else:
             print('Input is not valid')
             return 0
         return result
 
+    # write to output file
     def writeToOutputFile(self, result):
         try:
-            outputFile = input('Enter File Name For Ouput\n')
+            outputFile = input('Enter File Name For Output\n')
             with open(outputFile, 'w') as outputFile:
                 outputFile.write(result)
         except IOError:
             pass
         except FileNotFoundError:
+            print("Output File Not Found")
             pass
         except Exception as e:
             print(e)
             pass
 
+    # validates the input if user give wrong value file for conversion
     def validation(self, selection, inputValue):
         isValid = False
 

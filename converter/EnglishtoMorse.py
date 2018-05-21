@@ -1,7 +1,7 @@
 from data import SymbolsData
 
 
-class EnglishConverter:
+class Converter:
 
     def __init__(self):
         self.symbolData = SymbolsData.Mapping()
